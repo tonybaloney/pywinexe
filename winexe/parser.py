@@ -1,6 +1,6 @@
 import os
 
-def parse_powershell(script):
+def parse_ps(script):
     """Returns a one line version of a powershell script
     """
     oneline_ps = ';'.join(script.split('\n'))
@@ -22,7 +22,7 @@ def parse(file):
     content = file.read()
 
     if "ps" in ext:
-        return parse_powershell(content)
+        return parse_ps(content)
     else:
         # Try cmd
         return parse_cmd(content)
