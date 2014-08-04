@@ -1,5 +1,12 @@
+import logging
 import subprocess
 import parser
+
+from .exceptions import RequestException
+
+
+log = logging.getLogger(__name__)
+
 
 class Request(object):
 
@@ -52,11 +59,11 @@ class Request(object):
         """Sends the request. Returns output, success
         """
         winexe_cmd = self.winexe_command()
-        print ' '.join(winexe_cmd)
+        log.debug("Executing command: %s" % ' '.join(winexe_cmd))
         try:
             output = subprocess.check_output(winexe_cmd, stderr=subprocess.STDOUT)
             # always strip ending windows newlines
             output = output.rstrip('\r\n')
-            return output, True
+            return output
         except subprocess.CalledProcessError, e:
-            return e.output, False
+            raise RequestException(e.output, request=winexe_cmd)

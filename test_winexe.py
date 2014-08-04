@@ -15,6 +15,6 @@ class TestParser(unittest.TestCase):
         parsed = parse_ps(ps)
         expected = 'powershell "%s"' % ps
         self.assertEquals(parsed, expected)
-        
+
 if __name__ == '__main__':
     unittest.main()
