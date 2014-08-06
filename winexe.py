@@ -4,9 +4,6 @@ import winexe
 
 from winexe.exceptions import RequestException
 
-def run(method, **kwargs):
-    return winexe.run(method, **kwargs)
-
 def main():
     parser = argparse.ArgumentParser(description='Run scripts on remote windows.')
 
@@ -40,7 +37,7 @@ def main():
         raise Exception('Should not happen!')
 
     try:
-        print run(method, **args_dict)
+        print winexe.run(method, **args_dict)
     except RequestException, e:
         print str(e)
 
