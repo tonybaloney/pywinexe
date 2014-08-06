@@ -2,6 +2,8 @@
 import argparse
 import winexe
 
+from winexe.exceptions import RequestException
+
 def run(method, **kwargs):
     return winexe.run(method, **kwargs)
 
@@ -37,8 +39,10 @@ def main():
     else:
         raise Exception('Should not happen!')
 
-    output, success = run(method, **args_dict)
-    print output
+    try:
+        print run(method, **args_dict)
+    except RequestException, e:
+        print str(e)
 
 if __name__ == '__main__':
     main()
