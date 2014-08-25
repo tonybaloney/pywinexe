@@ -55,15 +55,22 @@ class Request(object):
         args.append(self.cmd)
         return args
 
+    def winexe_command_str(self):
+        """Return the winexe command. Can by pasted directly to the terminal.
+        """
+        args = self.winexe_command()
+        args[-1] = "'%s'" % self.cmd
+        return ' '.join(args)
+    
     def send(self):
         """Sends the request. Returns output, success
         """
         winexe_cmd = self.winexe_command()
-        log.debug("Executing command: %s" % ' '.join(winexe_cmd))
+        log.debug("Executing command: %s" % self.winexe_command_str)
         try:
             output = subprocess.check_output(winexe_cmd, stderr=subprocess.STDOUT)
             # always strip ending windows newlines
             output = output.rstrip('\r\n')
             return output
         except subprocess.CalledProcessError, e:
-            raise RequestException(e.output, request=winexe_cmd)
+            raise RequestException(e.output, request=self.winexe_command_str())
