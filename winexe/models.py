@@ -4,9 +4,7 @@ import parser
 
 from .exceptions import RequestException
 
-
 log = logging.getLogger(__name__)
-
 
 class Request(object):
 
@@ -45,7 +43,7 @@ class Request(object):
         else:
             raise Exception('Unknown method %s' % self.method)
 
-    def winexe_command(self):
+    def command(self):
         """Constructs a complete winexe command. Returns command in a list.
         """
         args = ['winexe']
@@ -55,22 +53,22 @@ class Request(object):
         args.append(self.cmd)
         return args
 
-    def winexe_command_str(self):
+    def command_str(self):
         """Return the winexe command. Can by pasted directly to the terminal.
         """
-        args = self.winexe_command()
+        args = self.command()
         args[-1] = "'%s'" % self.cmd
         return ' '.join(args)
     
     def send(self):
         """Sends the request. Returns output, success
         """
-        winexe_cmd = self.winexe_command()
-        log.debug("Executing command: %s" % self.winexe_command_str)
+        winexe_cmd = self.command()
+        log.debug("Executing command: %s" % self.command_str)
         try:
             output = subprocess.check_output(winexe_cmd, stderr=subprocess.STDOUT)
             # always strip ending windows newlines
             output = output.rstrip('\r\n')
             return output
         except subprocess.CalledProcessError, e:
-            raise RequestException(e.output, request=self.winexe_command_str())
+            raise RequestException(e.output, request=self.command_str())
