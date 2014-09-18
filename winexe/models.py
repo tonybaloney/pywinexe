@@ -64,7 +64,7 @@ class Request(object):
         """Sends the request. Returns output, success
         """
         winexe_cmd = self.command()
-        log.debug("Executing command: %s" % self.command_str)
+        log.debug("Executing command: %s" % self.command_str())
         try:
             output = subprocess.check_output(winexe_cmd, stderr=subprocess.STDOUT)
             # always strip ending windows newlines
