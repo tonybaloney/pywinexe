@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 import winexe
+import os
+
+HERE = os.path.dirname(__file__)
 
 def hostname(name=None, **kwargs):
     """Get or set the system's host name
@@ -18,12 +21,23 @@ def domain(name=None, **kwargs):
         pass
         #TODO
 
+def whereis(name, **kwargs):
+    script = open('{}/scripts/whereis.ps1'.format(HERE))
+    return winexe.script(script, 'firefox', **kwargs)
+
+def _enable_log():
+    import logging
+    log = logging.getLogger('winexe')
+    log.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler()
+    log.addHandler(handler)
+
 if __name__ == '__main__':
+    # _enable_log()
+
     kwargs = {
-        'host': '192.168.123.180',
+        'host': '192.168.123.195',
         'user': 'vagrant',
         'password': 'V@grant'
         }
-
-    output, success = domain(**kwargs)
-    print output
+    print whereis('firefox',**kwargs)

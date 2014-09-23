@@ -24,4 +24,4 @@ __author__ = u'Jakob Aarøe Dam'
 __license__ = 'Apache 2.0'
 __copyright__ = u'Copyright 2014 Jakob Aarøe Dam'
 
-from .api import run, cmd, ps
+from .api import *

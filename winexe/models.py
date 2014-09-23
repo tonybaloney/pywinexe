@@ -12,16 +12,18 @@ class Request(object):
         method=None,
         host=None,
         cmd=None,
-        file=None,
+        script=None,
         user=None,
-        password=None):
+        password=None,
+        args=None):
 
         self.method = method
         self.host = host
         self.cmd = cmd
-        self.file = file
+        self.script = script
         self.user = user
         self.password = password
+        self.args = args
 
         self.parse()
 
@@ -31,14 +33,14 @@ class Request(object):
     def parse(self):
         """Parse commands and convert to winexe supported commands
         """
-        if self.method == 'file':
-            self.cmd = parser.parse(self.file)
+        if self.method == 'script':
+            self.cmd = parser.parse(self.script, *self.args)
 
         elif self.method == 'cmd':
-            self.cmd = parser.parse_cmd(self.cmd)
+            self.cmd = parser.parse_cmd(self.cmd, *self.args)
 
         elif self.method == 'ps':
-            self.cmd = parser.parse_ps(self.cmd)
+            self.cmd = parser.parse_ps(self.cmd, *self.args)
 
         else:
             raise Exception('Unknown method %s' % self.method)
