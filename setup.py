@@ -14,6 +14,7 @@ except ImportError:
 
 packages = [
     'winexe',
+    'winadm'
 ]
 
 with open('README.md') as f:
@@ -28,7 +29,6 @@ setup(
     author_email='jakob.a.dam@gmail.com',
     url='http://github.com/jakobadam/python-winexe',
     packages=packages,
-    package_dir={'winexe': 'winexe'},
     include_package_data=True,
     license='Apache 2.0',
     zip_safe=False,
