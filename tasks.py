@@ -23,7 +23,7 @@ def domain(name=None, **kwargs):
 
 def whereis(name, **kwargs):
     script = open('{}/scripts/whereis.ps1'.format(HERE))
-    return winexe.script(script, 'firefox', **kwargs)
+    return winexe.script(script, name, **kwargs)
 
 def _enable_log():
     import logging
