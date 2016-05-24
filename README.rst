@@ -27,7 +27,7 @@ Or clone the repo:
 Credit
 -----
 
-
+Original credit goes to Jakob Aarøe Dam
 
 .. |Build| image:: https://travis-ci.org/tonybaloney/pywinexe.svg?branch=master
    :target: https://travis-ci.org/tonybaloney/pywinexe
