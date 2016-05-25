@@ -25,7 +25,7 @@ Or clone the repo:
     $ python setup.py install
 
 Credit
------
+------
 
 Original credit goes to Jakob Aarøe Dam
 
