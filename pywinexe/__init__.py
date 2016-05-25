@@ -28,7 +28,7 @@ machines. Basic Usage:
 """
 __title__ = 'pywinexe'
 __name__ = 'pywinexe'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Anthony Shaw'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright 2016 Anthony Shaw'
